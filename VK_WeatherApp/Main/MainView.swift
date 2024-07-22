@@ -10,17 +10,17 @@ import UIKit
 class MainView: UIView {
     private let gradientLayer = CAGradientLayer()
     
-    private let blurContainer: UIVisualEffectView = {
-        let blurEffect = UIBlurEffect(style: .light)
-        let blurView = UIVisualEffectView(effect: blurEffect)
-        blurView.layer.cornerRadius = 16
-        blurView.clipsToBounds = true
-        blurView.translatesAutoresizingMaskIntoConstraints = false
-        blurView.layer.shadowColor = UIColor.black.cgColor
-        blurView.layer.shadowOpacity = 0.5
-        blurView.layer.shadowOffset = CGSize(width: 0, height: 2)
-        blurView.layer.shadowRadius = 4
-        return blurView
+    private let containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.white.withAlphaComponent(0.1)
+        view.layer.cornerRadius = 16
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.shadowColor = Constants.Colors.gray.cgColor
+        view.layer.shadowOpacity = 0.5
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowRadius = 4
+        return view
     }()
     
     private let locationLabel: UILabel = {
@@ -64,8 +64,8 @@ class MainView: UIView {
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 4
-        layout.itemSize = CGSize(width: 90, height: 90)
+        layout.minimumLineSpacing = 3
+        layout.itemSize = CGSize(width: 85, height: 85)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
@@ -78,6 +78,7 @@ class MainView: UIView {
         setupView()
         setupCollectionView()
         setupBackground()
+        setupAnimation()
     }
     
     required init?(coder: NSCoder) {
@@ -88,10 +89,10 @@ class MainView: UIView {
         backgroundColor = Constants.Colors.primary
         addSubview(collectionView)
         addSubview(locationLabel)
-        addSubview(blurContainer)
-        blurContainer.contentView.addSubview(weatherIcon)
-        blurContainer.contentView.addSubview(weatherLabel)
-        blurContainer.contentView.addSubview(descriptionLabel)
+        addSubview(containerView)
+        containerView.addSubview(weatherIcon)
+        containerView.addSubview(weatherLabel)
+        containerView.addSubview(descriptionLabel)
         
         let paddingSmall = Constants.Padding.small
         let paddingMedium = Constants.Padding.medium
@@ -99,7 +100,7 @@ class MainView: UIView {
 
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: paddingSmall),
-            collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             collectionView.heightAnchor.constraint(equalToConstant: 100),
             
@@ -108,26 +109,26 @@ class MainView: UIView {
             locationLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -paddingMedium),
             locationLabel.heightAnchor.constraint(equalToConstant: 30),
             
-            blurContainer.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            blurContainer.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            blurContainer.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8),
-            blurContainer.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8),
+            containerView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            containerView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            containerView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8),
+            containerView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8),
             
-            weatherIcon.centerXAnchor.constraint(equalTo: blurContainer.contentView.centerXAnchor),
-            weatherIcon.topAnchor.constraint(equalTo: blurContainer.contentView.topAnchor, constant: paddingMedium),
+            weatherIcon.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            weatherIcon.topAnchor.constraint(equalTo: containerView.topAnchor, constant: paddingLarge),
             weatherIcon.widthAnchor.constraint(equalToConstant: 150),
             weatherIcon.heightAnchor.constraint(equalToConstant: 150),
             
-            weatherLabel.centerXAnchor.constraint(equalTo: blurContainer.contentView.centerXAnchor),
+            weatherLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             weatherLabel.topAnchor.constraint(equalTo: weatherIcon.bottomAnchor, constant: paddingSmall),
-            weatherLabel.leadingAnchor.constraint(equalTo: blurContainer.contentView.leadingAnchor, constant: paddingMedium),
-            weatherLabel.trailingAnchor.constraint(equalTo: blurContainer.contentView.trailingAnchor, constant: -paddingMedium),
+            weatherLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: paddingMedium),
+            weatherLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -paddingMedium),
             
-            descriptionLabel.centerXAnchor.constraint(equalTo: blurContainer.contentView.centerXAnchor),
+            descriptionLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             descriptionLabel.topAnchor.constraint(equalTo: weatherLabel.bottomAnchor, constant: paddingSmall),
-            descriptionLabel.leadingAnchor.constraint(equalTo: blurContainer.contentView.leadingAnchor, constant: paddingMedium),
-            descriptionLabel.trailingAnchor.constraint(equalTo: blurContainer.contentView.trailingAnchor, constant: -paddingMedium),
-            descriptionLabel.bottomAnchor.constraint(equalTo: blurContainer.contentView.bottomAnchor, constant: -paddingMedium)
+            descriptionLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: paddingMedium),
+            descriptionLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -paddingMedium),
+            descriptionLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -paddingMedium)
         ])
     }
     
@@ -136,9 +137,13 @@ class MainView: UIView {
     }
     
     private func setupBackground() {
-        setupGradient()
+        setupGradientBackground()
         setupClouds()
         setupDoodles()
+    }
+    
+    private func setupAnimation() {
+        animateWeatherIcon()
     }
     
     private func setupClouds() {
@@ -169,13 +174,15 @@ class MainView: UIView {
         }
     }
     
-    private func setupGradient() {
-        gradientLayer.colors = [Constants.Colors.light, Constants.Colors.primary]
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
-        gradientLayer.frame = bounds
-        layer.insertSublayer(gradientLayer, at: 0)
+    private func setupGradientBackground() {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [Constants.Colors.light.cgColor, Constants.Colors.primary.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+        gradientLayer.frame = self.bounds
+        self.layer.insertSublayer(gradientLayer, at: 0)
     }
+
     
     private func animateCloud(_ cloud: UIImageView, delay: TimeInterval) {
         let screenWidth = UIScreen.main.bounds.width
@@ -190,10 +197,10 @@ class MainView: UIView {
     }
     
     private func animateWeatherIcon() {
-        UIView.animate(withDuration: 2.0, delay: 0, options: [.repeat, .autoreverse, .curveEaseInOut], animations: {
-            self.weatherIcon.transform = CGAffineTransform(translationX: 0, y: -10)
-        }, completion: nil)
-    }
+            UIView.animate(withDuration: 2.0, delay: 0, options: [.repeat, .autoreverse, .curveEaseInOut], animations: {
+                self.weatherIcon.transform = CGAffineTransform(translationX: 0, y: -10)
+            }, completion: nil)
+        }
 
     private func setupDoodles() {
         let doodle1 = UIImageView(image: UIImage(named: "doodle1"))

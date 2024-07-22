@@ -20,7 +20,6 @@ class WeatherViewModel {
     
     private func loadWeatherData() {
         weatherData = [
-            Weather(icon: UIImage(named: "sunClouds")!, title: "Sun Clouds", description: "Partly cloudy with sun"),
             Weather(icon: UIImage(named: "weatherCloudyDay")!, title: "Cloudy Day", description: "Overcast day"),
             Weather(icon: UIImage(named: "weatherCloudyDayLess")!, title: "Less Cloudy", description: "Few clouds"),
             Weather(icon: UIImage(named: "weatherCloudyNight")!, title: "Cloudy Night", description: "Overcast night"),
