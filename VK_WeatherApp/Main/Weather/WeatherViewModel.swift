@@ -1,0 +1,30 @@
+//
+//  WeatherViewModel.swift
+//  VK_WeatherApp
+//
+//  Created by Ai Hawok on 22/07/2024.
+//
+
+import Foundation
+import UIKit
+
+class WeatherViewModel {
+    
+    private(set) var weatherData: [Weather] = []
+    
+    init() {
+        loadWeatherData()
+    }
+    
+    private func loadWeatherData() {
+        weatherData = [
+            Weather(icon: UIImage(named: "sunClouds")!, title: "Sun Clouds", description: "Partly cloudy with sun"),
+            Weather(icon: UIImage(named: "weatherCloudyDay")!, title: "Cloudy Day", description: "Overcast day"),
+            Weather(icon: UIImage(named: "weatherCloudyDayLess")!, title: "Less Cloudy", description: "Few clouds"),
+            Weather(icon: UIImage(named: "weatherCloudyNight")!, title: "Cloudy Night", description: "Overcast night"),
+            Weather(icon: UIImage(named: "weatherRain")!, title: "Rain", description: "Rainy weather"),
+            Weather(icon: UIImage(named: "weatherSun")!, title: "Sunny", description: "Clear sky"),
+            Weather(icon: UIImage(named: "weatherThunder")!, title: "Thunder", description: "Thunderstorm")
+        ]
+    }
+}
