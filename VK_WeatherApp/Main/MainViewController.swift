@@ -21,12 +21,22 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         viewModel = WeatherViewModel()
         setupCollectionView()
+        selectRandomWeather()
     }
     
     private func setupCollectionView() {
         mainView.collectionView.dataSource = self
         mainView.collectionView.delegate = self
         mainView.collectionView.reloadData()
+    }
+    
+    private func selectRandomWeather() {
+        if let selectedIndex = viewModel.selectedWeatherIndex {
+            let indexPath = IndexPath(item: selectedIndex, section: 0)
+            mainView.collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
+            let selectedWeather = viewModel.weatherData[selectedIndex]
+            mainView.updateWeatherInfo(weather: selectedWeather)
+        }
     }
 }
 
