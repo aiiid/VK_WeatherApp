@@ -19,15 +19,15 @@ class WeatherViewModel {
     }
     
     private func loadWeatherData() {
-        weatherData = [
-            Weather(icon: UIImage(named: "weatherCloudyDay")!, title: "Cloudy Day", description: "Overcast day"),
-            Weather(icon: UIImage(named: "weatherCloudyDayLess")!, title: "Less Cloudy", description: "Few clouds"),
-            Weather(icon: UIImage(named: "weatherCloudyNight")!, title: "Starry Night", description: "Overcast night"),
-            Weather(icon: UIImage(named: "weatherRain")!, title: "Rain", description: "Rainy weather"),
-            Weather(icon: UIImage(named: "weatherSun")!, title: "Sunny", description: "Clear sky"),
-            Weather(icon: UIImage(named: "weatherThunder")!, title: "Thunder", description: "Thunderstorm")
-        ]
-    }
+          weatherData = [
+            Weather(icon: UIImage(named: "weatherCloudyDay")!, title: "Cloudy Day", description: "Overcast day", topColor: Constants.Colors.blue, bottomColor: Constants.Colors.primary),
+              Weather(icon: UIImage(named: "weatherCloudyDayLess")!, title: "Less Cloudy", description: "Few clouds", topColor: Constants.Colors.blue, bottomColor: Constants.Colors.primary),
+              Weather(icon: UIImage(named: "weatherCloudyNight")!, title: "Starry Night", description: "Overcast night", topColor: Constants.Colors.darkerBlue, bottomColor: Constants.Colors.primaryDarker),
+              Weather(icon: UIImage(named: "weatherRain2")!, title: "Rain", description: "Rainy weather", topColor: Constants.Colors.grayish, bottomColor: Constants.Colors.primaryDarker),
+              Weather(icon: UIImage(named: "weatherSun")!, title: "Sunny", description: "Clear sky", topColor: Constants.Colors.sunny, bottomColor: Constants.Colors.light),
+              Weather(icon: UIImage(named: "weatherThunder")!, title: "Thunder", description: "Thunderstorm", topColor: Constants.Colors.darkerBlue, bottomColor: Constants.Colors.primaryDarker)
+          ]
+      }
     
     private func selectRandomWeather() {
         selectedWeatherIndex = Int.random(in: 0..<weatherData.count)

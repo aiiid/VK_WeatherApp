@@ -75,22 +75,24 @@ class WeatherAnimationView: UIView {
     }
 
     private func animateLightningImage(_ imageName: String) {
-        let lightningImageView = UIImageView(image: UIImage(named: imageName))
-        let imageSize: CGFloat = 500
-        let maxX = max(self.bounds.width - imageSize, 0)
-        let maxY = max(self.bounds.height - imageSize, 0)
-        let randomX = CGFloat(arc4random_uniform(UInt32(maxX)))
-        let randomY = CGFloat(arc4random_uniform(UInt32(maxY)))
-        lightningImageView.frame = CGRect(x: randomX, y: randomY, width: imageSize, height: imageSize)
-        lightningImageView.alpha = 0.0
-        self.addSubview(lightningImageView)
-        self.lightningImageViews.append(lightningImageView)
-        
-        UIView.animate(withDuration: 0.2, delay: 0, options: [.autoreverse], animations: {
-            lightningImageView.alpha = 1.0
-        }, completion: { _ in
-            lightningImageView.removeFromSuperview()
-        })
+        if isLightning {
+            let lightningImageView = UIImageView(image: UIImage(named: imageName))
+            let imageSize: CGFloat = 500
+            let maxX = max(self.bounds.width - imageSize, 0)
+            let maxY = max(self.bounds.height - imageSize, 0)
+            let randomX = CGFloat(arc4random_uniform(UInt32(maxX)))
+            let randomY = CGFloat(arc4random_uniform(UInt32(maxY)))
+            lightningImageView.frame = CGRect(x: randomX, y: randomY, width: imageSize, height: imageSize)
+            lightningImageView.alpha = 0.0
+            self.addSubview(lightningImageView)
+            self.lightningImageViews.append(lightningImageView)
+            
+            UIView.animate(withDuration: 0.2, delay: 0, options: [.autoreverse], animations: {
+                lightningImageView.alpha = 1.0
+            }, completion: { _ in
+                lightningImageView.removeFromSuperview()
+            })
+        }
     }
 
     //MARK: - Stars

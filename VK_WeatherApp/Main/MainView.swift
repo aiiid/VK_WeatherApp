@@ -4,11 +4,11 @@
 //
 //  Created by Ai Hawok on 22/07/2024.
 //
-
 import UIKit
 
 class MainView: UIView {
     private let animationView = WeatherAnimationView()
+    private let gradientLayer = CAGradientLayer()
     
     private let containerView: UIView = {
         let view = UIView()
@@ -159,6 +159,8 @@ class MainView: UIView {
             self.descriptionLabel.text = weather.description
         }, completion: nil)
         
+        updateGradientBackground(topColor: weather.topColor, bottomColor: weather.bottomColor)
+        
         switch weather.title {
         case "Rain":
             animationView.startRainAnimation()
@@ -174,6 +176,18 @@ class MainView: UIView {
             animationView.stopAllAnimations()
         }
     }
+    
+    private func updateGradientBackground(topColor: UIColor, bottomColor: UIColor) {
+        let newColors = [topColor.cgColor, bottomColor.cgColor]
+        
+        let animation = CABasicAnimation(keyPath: "colors")
+        animation.fromValue = gradientLayer.colors
+        animation.toValue = newColors
+        animation.duration = 1.0
+        gradientLayer.add(animation, forKey: "colors")
+        
+        gradientLayer.colors = newColors
+    }
 }
 
 //MARK: - Background setup
@@ -186,7 +200,6 @@ extension MainView {
     }
     
     private func setupGradientBackground() {
-        let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [Constants.Colors.light.cgColor, Constants.Colors.primary.cgColor]
         gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
         gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)

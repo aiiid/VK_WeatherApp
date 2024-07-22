@@ -12,4 +12,6 @@ struct Weather {
     let icon: UIImage
     let title: String
     let description: String
+    let topColor: UIColor
+    let bottomColor: UIColor
 }
