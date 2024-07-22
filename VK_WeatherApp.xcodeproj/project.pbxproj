@@ -74,10 +74,10 @@
 		E2CF9F102C4EA7F000264734 /* VK_WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				E2CF9F272C4EB92D00264734 /* SplashScreen */,
 				E2CF9F302C4EBDC200264734 /* Main */,
 				E2CF9F2B2C4EB96100264734 /* Support */,
 				E2CF9F2A2C4EB95900264734 /* Utilities */,
-				E2CF9F272C4EB92D00264734 /* SplashScreen */,
 				E2CF9F1F2C4EA7F200264734 /* Info.plist */,
 			);
 			path = VK_WeatherApp;

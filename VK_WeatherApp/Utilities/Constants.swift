@@ -33,8 +33,8 @@ class Constants {
     }
     
     struct Fonts {
-            static let largeTitle = UIFont.systemFont(ofSize: 60, weight: .bold)
-            static let title = UIFont.systemFont(ofSize: 24, weight: .medium)
-            static let body = UIFont.systemFont(ofSize: 14, weight: .regular)
-        }
+        static let largeTitle = UIFont.systemFont(ofSize: 60, weight: .bold)
+        static let title = UIFont.systemFont(ofSize: 24, weight: .medium)
+        static let body = UIFont.systemFont(ofSize: 14, weight: .regular)
+    }
 }

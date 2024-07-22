@@ -25,10 +25,11 @@ class MainView: UIView {
     
     private let locationLabel: UILabel = {
         let label = UILabel()
-        label.text = "Location"
+        label.text = "Location:\nVK house"
         label.font = Constants.Fonts.body
         label.textAlignment = .center
         label.textColor = .white
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -102,17 +103,16 @@ class MainView: UIView {
         let paddingSmall = Constants.Padding.small
         let paddingMedium = Constants.Padding.medium
         let paddingLarge = Constants.Padding.large
-
+        
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: paddingSmall),
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             collectionView.heightAnchor.constraint(equalToConstant: 100),
             
-            locationLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: paddingMedium),
+            locationLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: paddingLarge),
             locationLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: paddingMedium),
             locationLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -paddingMedium),
-            locationLabel.heightAnchor.constraint(equalToConstant: 30),
             
             containerView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             containerView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
@@ -145,7 +145,7 @@ class MainView: UIView {
     private func setupCollectionView() {
         collectionView.register(WeatherCell.self, forCellWithReuseIdentifier: WeatherCell.reuseIdentifier)
     }
-
+    
     func updateWeatherInfo(weather: Weather) {
         UIView.transition(with: weatherIcon, duration: 0.3, options: .transitionCrossDissolve, animations: {
             self.weatherIcon.image = weather.icon
@@ -288,8 +288,8 @@ extension MainView {
     }
     
     private func animateWeatherIcon() {
-            UIView.animate(withDuration: 2.0, delay: 0, options: [.repeat, .autoreverse, .curveEaseInOut], animations: {
-                self.weatherIcon.transform = CGAffineTransform(translationX: 0, y: -10)
-            }, completion: nil)
-        }
+        UIView.animate(withDuration: 2.0, delay: 0, options: [.repeat, .autoreverse, .curveEaseInOut], animations: {
+            self.weatherIcon.transform = CGAffineTransform(translationX: 0, y: -10)
+        }, completion: nil)
+    }
 }

@@ -17,7 +17,7 @@ class WeatherAnimationView: UIView {
     private let cloudImages = ["cloud1", "cloud2", "cloud3", "cloud4", "cloud5", "cloud6"]
     
     private var isLightning = false
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -28,8 +28,8 @@ class WeatherAnimationView: UIView {
     
     //MARK: - Rain
     func startRainAnimation() {
-        print("Starting rain animation")
         stopAllAnimations()
+        
         let rainLayer = CAEmitterLayer()
         rainLayer.emitterPosition = CGPoint(x: bounds.width, y: -50)
         rainLayer.emitterShape = .line
@@ -56,13 +56,13 @@ class WeatherAnimationView: UIView {
     
     //MARK: - Lightning
     func startLightningAnimation() {
-        print("Starting lightning animation")
         stopAllAnimations()
+        
         isLightning = true
         scheduleNextLightning(lightningImages)
         
     }
-
+    
     private func scheduleNextLightning(_ lightningImages: [String]) {
         if isLightning {
             let randomDelay = Double(arc4random_uniform(5) + 1)
@@ -73,7 +73,7 @@ class WeatherAnimationView: UIView {
             }
         }
     }
-
+    
     private func animateLightningImage(_ imageName: String) {
         if isLightning {
             let lightningImageView = UIImageView(image: UIImage(named: imageName))
@@ -94,11 +94,11 @@ class WeatherAnimationView: UIView {
             })
         }
     }
-
+    
     //MARK: - Stars
     func startStarryNightAnimation() {
-        print("Starting starry night animation")
         stopAllAnimations()
+        
         for _ in 0..<50 {
             let starLayer = CALayer()
             if let starImage = UIImage(named: "star")?.cgImage {
@@ -125,11 +125,11 @@ class WeatherAnimationView: UIView {
             starLayer.add(fadeIn, forKey: "fadeInOut")
         }
     }
-
+    
     //MARK: - Clouds
     func startCloudAnimation(cloudCount: Int) {
-        print("Starting cloud animation")
         stopAllAnimations()
+        
         for _ in 0..<cloudCount {
             let randomImageName = cloudImages.randomElement()!
             let cloudImageView = UIImageView(image: UIImage(named: randomImageName))
@@ -152,7 +152,7 @@ class WeatherAnimationView: UIView {
         cloud.layer.add(animation, forKey: "cloudMovement")
         
         UIView.animate(withDuration: 1.0, delay: 0, options: [], animations: {
-            cloud.alpha = 1.0
+            cloud.alpha = 0.6
         }, completion: { _ in
             UIView.animate(withDuration: 1.0, delay: 39, options: [], animations: {
                 cloud.alpha = 0.0
