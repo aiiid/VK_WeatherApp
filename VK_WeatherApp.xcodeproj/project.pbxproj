@@ -20,6 +20,8 @@
 		E2CF9F392C4EC1FE00264734 /* CollectionView+ Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF9F382C4EC1FE00264734 /* CollectionView+ Extension.swift */; };
 		E2CF9F3B2C4EC4F600264734 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF9F3A2C4EC4F600264734 /* WeatherModel.swift */; };
 		E2CF9F3D2C4EC5D200264734 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF9F3C2C4EC5D200264734 /* WeatherViewModel.swift */; };
+		E2CF9F402C4EFB6A00264734 /* WeatherAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF9F3F2C4EFB6900264734 /* WeatherAnimationView.swift */; };
+		E2CF9F422C4F029900264734 /* RainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF9F412C4F029900264734 /* RainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		E2CF9F382C4EC1FE00264734 /* CollectionView+ Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+ Extension.swift"; sourceTree = "<group>"; };
 		E2CF9F3A2C4EC4F600264734 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		E2CF9F3C2C4EC5D200264734 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		E2CF9F3F2C4EFB6900264734 /* WeatherAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAnimationView.swift; sourceTree = "<group>"; };
+		E2CF9F412C4F029900264734 /* RainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,8 @@
 				E2CF9F3E2C4EC5DD00264734 /* Weather */,
 				E2CF9F312C4EBDCD00264734 /* MainView.swift */,
 				E2CF9F332C4EBDD800264734 /* MainViewController.swift */,
+				E2CF9F3F2C4EFB6900264734 /* WeatherAnimationView.swift */,
+				E2CF9F412C4F029900264734 /* RainViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -201,11 +207,13 @@
 				E2CF9F3D2C4EC5D200264734 /* WeatherViewModel.swift in Sources */,
 				E2CF9F322C4EBDCD00264734 /* MainView.swift in Sources */,
 				E2CF9F372C4EC1C700264734 /* WeatherCell.swift in Sources */,
+				E2CF9F422C4F029900264734 /* RainViewController.swift in Sources */,
 				E2CF9F122C4EA7F000264734 /* AppDelegate.swift in Sources */,
 				E2CF9F292C4EB93A00264734 /* SplashScreenView.swift in Sources */,
 				E2CF9F2F2C4EBB0500264734 /* UIColor + Extension.swift in Sources */,
 				E2CF9F262C4EB92900264734 /* SplashScreenViewController.swift in Sources */,
 				E2CF9F142C4EA7F000264734 /* SceneDelegate.swift in Sources */,
+				E2CF9F402C4EFB6A00264734 /* WeatherAnimationView.swift in Sources */,
 				E2CF9F3B2C4EC4F600264734 /* WeatherModel.swift in Sources */,
 				E2CF9F392C4EC1FE00264734 /* CollectionView+ Extension.swift in Sources */,
 				E2CF9F342C4EBDD800264734 /* MainViewController.swift in Sources */,

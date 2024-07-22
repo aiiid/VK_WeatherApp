@@ -22,7 +22,7 @@ class WeatherViewModel {
         weatherData = [
             Weather(icon: UIImage(named: "weatherCloudyDay")!, title: "Cloudy Day", description: "Overcast day"),
             Weather(icon: UIImage(named: "weatherCloudyDayLess")!, title: "Less Cloudy", description: "Few clouds"),
-            Weather(icon: UIImage(named: "weatherCloudyNight")!, title: "Cloudy Night", description: "Overcast night"),
+            Weather(icon: UIImage(named: "weatherCloudyNight")!, title: "Starry Night", description: "Overcast night"),
             Weather(icon: UIImage(named: "weatherRain")!, title: "Rain", description: "Rainy weather"),
             Weather(icon: UIImage(named: "weatherSun")!, title: "Sunny", description: "Clear sky"),
             Weather(icon: UIImage(named: "weatherThunder")!, title: "Thunder", description: "Thunderstorm")
@@ -36,5 +36,9 @@ class WeatherViewModel {
     func getSelectedWeather() -> Weather? {
         guard let index = selectedWeatherIndex else { return nil }
         return weatherData[index]
+    }
+    
+    func setSelectedWeatherIndex(_ index: Int) {
+        selectedWeatherIndex = index
     }
 }

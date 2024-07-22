@@ -8,7 +8,7 @@
 import UIKit
 
 class MainView: UIView {
-    private let gradientLayer = CAGradientLayer()
+    private let animationView = WeatherAnimationView()
     
     private let containerView: UIView = {
         let view = UIView()
@@ -90,9 +90,14 @@ class MainView: UIView {
         addSubview(collectionView)
         addSubview(locationLabel)
         addSubview(containerView)
+        addSubview(animationView)
         containerView.addSubview(weatherIcon)
         containerView.addSubview(weatherLabel)
         containerView.addSubview(descriptionLabel)
+        
+        bringSubviewToFront(collectionView)
+        
+        animationView.translatesAutoresizingMaskIntoConstraints = false
         
         let paddingSmall = Constants.Padding.small
         let paddingMedium = Constants.Padding.medium
@@ -128,22 +133,65 @@ class MainView: UIView {
             descriptionLabel.topAnchor.constraint(equalTo: weatherLabel.bottomAnchor, constant: paddingSmall),
             descriptionLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: paddingMedium),
             descriptionLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -paddingMedium),
-            descriptionLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -paddingMedium)
+            descriptionLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -paddingMedium),
+            
+            animationView.topAnchor.constraint(equalTo: self.topAnchor),
+            animationView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            animationView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            animationView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
     
     private func setupCollectionView() {
         collectionView.register(WeatherCell.self, forCellWithReuseIdentifier: WeatherCell.reuseIdentifier)
     }
-    
+
+    func updateWeatherInfo(weather: Weather) {
+        UIView.transition(with: weatherIcon, duration: 0.3, options: .transitionCrossDissolve, animations: {
+            self.weatherIcon.image = weather.icon
+        }, completion: nil)
+        
+        UIView.transition(with: weatherLabel, duration: 0.3, options: .transitionCrossDissolve, animations: {
+            self.weatherLabel.text = weather.title
+        }, completion: nil)
+        
+        UIView.transition(with: descriptionLabel, duration: 0.3, options: .transitionCrossDissolve, animations: {
+            self.descriptionLabel.text = weather.description
+        }, completion: nil)
+        
+        switch weather.title {
+        case "Rain":
+            animationView.startRainAnimation()
+        case "Thunder":
+            animationView.startLightningAnimation()
+        case "Starry Night":
+            animationView.startStarryNightAnimation()
+        case "Cloudy Day":
+            animationView.startCloudAnimation(cloudCount: 15)
+        case "Less Cloudy":
+            animationView.startCloudAnimation(cloudCount: 5)
+        default:
+            animationView.stopAllAnimations()
+        }
+    }
+}
+
+//MARK: - Background setup
+
+extension MainView {
     private func setupBackground() {
         setupGradientBackground()
         setupClouds()
         setupDoodles()
     }
     
-    private func setupAnimation() {
-        animateWeatherIcon()
+    private func setupGradientBackground() {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [Constants.Colors.light.cgColor, Constants.Colors.primary.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+        gradientLayer.frame = self.bounds
+        self.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     private func setupClouds() {
@@ -174,34 +222,6 @@ class MainView: UIView {
         }
     }
     
-    private func setupGradientBackground() {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [Constants.Colors.light.cgColor, Constants.Colors.primary.cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
-        gradientLayer.frame = self.bounds
-        self.layer.insertSublayer(gradientLayer, at: 0)
-    }
-
-    
-    private func animateCloud(_ cloud: UIImageView, delay: TimeInterval) {
-        let screenWidth = UIScreen.main.bounds.width
-        let initialX = (screenWidth - cloud.frame.width) / 2
-        let finalX = initialX + 30
-        let randomDuration = Double(arc4random_uniform(10) + 10)
-        cloud.frame.origin.x = initialX
-        
-        UIView.animateKeyframes(withDuration: randomDuration, delay: delay, options: [.repeat, .autoreverse, .calculationModeLinear], animations: {
-            cloud.frame.origin.x = finalX
-        }, completion: nil)
-    }
-    
-    private func animateWeatherIcon() {
-            UIView.animate(withDuration: 2.0, delay: 0, options: [.repeat, .autoreverse, .curveEaseInOut], animations: {
-                self.weatherIcon.transform = CGAffineTransform(translationX: 0, y: -10)
-            }, completion: nil)
-        }
-
     private func setupDoodles() {
         let doodle1 = UIImageView(image: UIImage(named: "doodle1"))
         let doodle2 = UIImageView(image: UIImage(named: "doodle2"))
@@ -233,18 +253,30 @@ class MainView: UIView {
             doodle2.heightAnchor.constraint(equalToConstant: 150)
         ])
     }
+}
+
+//MARK: - Animation setup
+
+extension MainView {
+    private func setupAnimation() {
+        animateWeatherIcon()
+    }
     
-    func updateWeatherInfo(weather: Weather) {
-        UIView.transition(with: weatherIcon, duration: 0.3, options: .transitionCrossDissolve, animations: {
-            self.weatherIcon.image = weather.icon
-        }, completion: nil)
+    private func animateCloud(_ cloud: UIImageView, delay: TimeInterval) {
+        let screenWidth = UIScreen.main.bounds.width
+        let initialX = (screenWidth - cloud.frame.width) / 2
+        let finalX = initialX + 30
+        let randomDuration = Double(arc4random_uniform(10) + 10)
+        cloud.frame.origin.x = initialX
         
-        UIView.transition(with: weatherLabel, duration: 0.3, options: .transitionCrossDissolve, animations: {
-            self.weatherLabel.text = weather.title
-        }, completion: nil)
-        
-        UIView.transition(with: descriptionLabel, duration: 0.3, options: .transitionCrossDissolve, animations: {
-            self.descriptionLabel.text = weather.description
+        UIView.animateKeyframes(withDuration: randomDuration, delay: delay, options: [.repeat, .autoreverse, .calculationModeLinear], animations: {
+            cloud.frame.origin.x = finalX
         }, completion: nil)
     }
+    
+    private func animateWeatherIcon() {
+            UIView.animate(withDuration: 2.0, delay: 0, options: [.repeat, .autoreverse, .curveEaseInOut], animations: {
+                self.weatherIcon.transform = CGAffineTransform(translationX: 0, y: -10)
+            }, completion: nil)
+        }
 }
