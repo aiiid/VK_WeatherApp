@@ -25,7 +25,9 @@ class MainView: UIView {
     
     private let locationLabel: UILabel = {
         let label = UILabel()
-        label.text = "Location:\nVK house"
+        let location = NSLocalizedString("location", comment: "Location label")
+        let house = NSLocalizedString("vkHouse", comment: "Location house")
+        label.text = "\(location):\n\(house)"
         label.font = Constants.Fonts.body
         label.textAlignment = .center
         label.textColor = .white
@@ -44,7 +46,7 @@ class MainView: UIView {
     
     private let weatherLabel: UILabel = {
         let label = UILabel()
-        label.text = "Weather"
+        label.text = NSLocalizedString("weather", comment: "weather")
         label.font = Constants.Fonts.title
         label.textAlignment = .center
         label.textColor = .white
@@ -54,7 +56,7 @@ class MainView: UIView {
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Weather description"
+        label.text =  NSLocalizedString("weatherDescr", comment: "weatherDescr")
         label.font = Constants.Fonts.body
         label.textAlignment = .center
         label.textColor = .white

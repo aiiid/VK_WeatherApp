@@ -22,6 +22,7 @@
 		E2CF9F3D2C4EC5D200264734 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF9F3C2C4EC5D200264734 /* WeatherViewModel.swift */; };
 		E2CF9F402C4EFB6A00264734 /* WeatherAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF9F3F2C4EFB6900264734 /* WeatherAnimationView.swift */; };
 		E2CF9F422C4F029900264734 /* RainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF9F412C4F029900264734 /* RainViewController.swift */; };
+		E2CF9F442C4F9C9C00264734 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E2CF9F432C4F9C9C00264734 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		E2CF9F3C2C4EC5D200264734 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		E2CF9F3F2C4EFB6900264734 /* WeatherAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAnimationView.swift; sourceTree = "<group>"; };
 		E2CF9F412C4F029900264734 /* RainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainViewController.swift; sourceTree = "<group>"; };
+		E2CF9F432C4F9C9C00264734 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				E2CF9F2C2C4EB98E00264734 /* Constants.swift */,
 				E2CF9F2E2C4EBB0500264734 /* UIColor + Extension.swift */,
 				E2CF9F382C4EC1FE00264734 /* CollectionView+ Extension.swift */,
+				E2CF9F432C4F9C9C00264734 /* Localizable.xcstrings */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = E2CF9F052C4EA7F000264734;
 			productRefGroup = E2CF9F0F2C4EA7F000264734 /* Products */;
@@ -192,6 +196,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2CF9F442C4F9C9C00264734 /* Localizable.xcstrings in Resources */,
 				E2CF9F1B2C4EA7F200264734 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

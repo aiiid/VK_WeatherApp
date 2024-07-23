@@ -20,12 +20,60 @@ class WeatherViewModel {
     
     private func loadWeatherData() {
         weatherData = [
-            Weather(icon: UIImage(named: "weatherCloudyDay")!, title: "Cloudy Day", description: "Overcast day", topColor: Constants.Colors.blue, bottomColor: Constants.Colors.primary),
-            Weather(icon: UIImage(named: "weatherCloudyDayLess")!, title: "Less Cloudy", description: "Few clouds", topColor: Constants.Colors.blue, bottomColor: Constants.Colors.primary),
-            Weather(icon: UIImage(named: "weatherCloudyNight")!, title: "Starry Night", description: "Overcast night", topColor: Constants.Colors.darkerBlue, bottomColor: Constants.Colors.primaryDarker),
-            Weather(icon: UIImage(named: "weatherRain2")!, title: "Rain", description: "Rainy weather", topColor: Constants.Colors.grayish, bottomColor: Constants.Colors.primaryDarker),
-            Weather(icon: UIImage(named: "weatherSun")!, title: "Sunny", description: "Clear sky", topColor: Constants.Colors.sunny, bottomColor: Constants.Colors.light),
-            Weather(icon: UIImage(named: "weatherThunder")!, title: "Thunder", description: "Thunderstorm", topColor: Constants.Colors.darkerBlue, bottomColor: Constants.Colors.primaryDarker)
+            Weather(
+                icon: UIImage(
+                    named: "weatherCloudyDay"
+                )!,
+                title:  NSLocalizedString("cloudyDay", comment: "cloudyDay"),
+                description: "Overcast day",
+                topColor: Constants.Colors.blue,
+                bottomColor: Constants.Colors.primary
+            ),
+            Weather(
+                icon: UIImage(
+                    named: "weatherCloudyDayLess"
+                )!,
+                title:  NSLocalizedString("lessCloudy", comment: "lessCloudy"),
+                description: NSLocalizedString("lessCloudyDescr", comment: "lessCloudyDescr"),
+                topColor: Constants.Colors.blue,
+                bottomColor: Constants.Colors.primary
+            ),
+            Weather(
+                icon: UIImage(
+                    named: "weatherCloudyNight"
+                )!,
+                title: NSLocalizedString("starryNight", comment: "starryNight"),
+                description: NSLocalizedString("starryNightDescr", comment: "starryNightDescr"),
+                topColor: Constants.Colors.darkerBlue,
+                bottomColor: Constants.Colors.primaryDarker
+            ),
+            Weather(
+                icon: UIImage(
+                    named: "weatherRain2"
+                )!,
+                title: NSLocalizedString("rain", comment: "rain"),
+                description:  NSLocalizedString("rainDescr", comment: "rainDescr"),
+                topColor: Constants.Colors.grayish,
+                bottomColor: Constants.Colors.primaryDarker
+            ),
+            Weather(
+                icon: UIImage(
+                    named: "weatherSun"
+                )!,
+                title: NSLocalizedString("sunny", comment: "sunny"),
+                description:  NSLocalizedString("sunnyDescr", comment: "sunnyDescr"),
+                topColor: Constants.Colors.sunny,
+                bottomColor: Constants.Colors.light
+            ),
+            Weather(
+                icon: UIImage(
+                    named: "weatherThunder"
+                )!,
+                title: NSLocalizedString("thunder", comment: "thunder"),
+                description:NSLocalizedString("thunderDescr", comment: "thunderDescr"),
+                topColor: Constants.Colors.darkerBlue,
+                bottomColor: Constants.Colors.primaryDarker
+            )
         ]
     }
     
