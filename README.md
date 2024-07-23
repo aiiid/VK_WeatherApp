@@ -5,9 +5,9 @@ Built entirely with UIKit and free Figma assets, the app features custom animati
 
 <img width="200" alt="Weather icons frame 1" src="https://github.com/user-attachments/assets/c6407ccf-889d-476f-8a7f-a2246da7912b">
 
-<img width="300" alt="StarryNight" src="https://github.com/user-attachments/assets/437e9eaf-7c85-4dda-b4f6-ea3428abb00a">
-<img width="300" alt="Lightning" src="https://github.com/user-attachments/assets/781a77d2-dc7b-41b8-b413-4ae832ef81d6">
-<img width="300" alt="Rainy" src = "https://github.com/user-attachments/assets/c40c1c97-ace6-4c06-a6cd-34712dfd1913">
+<img width="270" alt="StarryNight" src="https://github.com/user-attachments/assets/437e9eaf-7c85-4dda-b4f6-ea3428abb00a">
+<img width="270" alt="Lightning" src="https://github.com/user-attachments/assets/781a77d2-dc7b-41b8-b413-4ae832ef81d6">
+<img width="270" alt="Rainy" src = "https://github.com/user-attachments/assets/c40c1c97-ace6-4c06-a6cd-34712dfd1913">
 
 
 
